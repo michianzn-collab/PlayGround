@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="theme-color" content="#101a17" />
+<title>WILDLANDS — Last Light</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main id="game">
+  <div id="scene"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">W</span><span>WILDLANDS<small>FRONTIER SURVIVAL</small></span></div>
+    <div class="location"><span class="live-dot"></span> CEDAR VALLEY <b>/</b> NORTHERN REACH</div>
+    <div class="weather"><span id="weather-icon">☀</span><span id="weather-label">CLEAR SKIES</span><i></i><span id="clock">06:42</span></div>
+  </header>
+  <section class="mission-card" id="mission-card">
+    <div class="eyebrow"><span class="tiny-diamond"></span> FIELD DIRECTIVE <span class="mission-code">#01</span></div>
+    <h1>LAST<br><em>LIGHT</em></h1>
+    <p class="mission-copy">The drop pod is gone. The ridge beacon is your only way out.</p>
+    <div class="mission-progress"><div class="progress-line"><span id="mission-progress"></span></div><b id="mission-count">0 / 3</b></div>
+    <div class="objective" id="objective"><span class="objective-check">○</span><span>Craft a <b>stone axe</b></span></div>
+    <div class="objective" id="objective-fire"><span class="objective-check">○</span><span>Build a <b>campfire</b></span></div>
+    <div class="objective" id="objective-beacon"><span class="objective-check">○</span><span>Reach the <b>ridge beacon</b></span></div>
+    <div class="mission-foot"><span>FIELD NOTES</span><span>Survive the night. Find a way home.</span></div>
+  </section>
+  <section class="survival-panel">
+    <div class="panel-title"><span>VITALS</span><span class="pulse">● LIVE</span></div>
+    <div class="vital-row"><span class="vital-icon health-icon">+</span><div class="vital-info"><div><b>HEALTH</b><span id="health-value">100</span></div><div class="meter"><i id="health-meter" class="health-meter"></i></div></div></div>
+    <div class="vital-row"><span class="vital-icon food-icon">◒</span><div class="vital-info"><div><b>NUTRITION</b><span id="food-value">100</span></div><div class="meter"><i id="food-meter" class="food-meter"></i></div></div></div>
+    <div class="vital-row"><span class="vital-icon water-icon">◈</span><div class="vital-info"><div><b>HYDRATION</b><span id="water-value">100</span></div><div class="meter"><i id="water-meter" class="water-meter"></i></div></div></div>
+    <div class="vital-row"><span class="vital-icon temp-icon">⌁</span><div class="vital-info"><div><b>BODY TEMP</b><span id="temp-value">37°</span></div><div class="meter"><i id="temp-meter" class="temp-meter"></i></div></div></div>
+  </section>
+  <section class="compass"><div class="compass-heading"><span>FIELD COMPASS</span><span id="bearing">N 000°</span></div><div class="compass-track"><div class="compass-ticks"></div><span class="north">N</span><span class="east">E</span><span class="south">S</span><span class="west">W</span><span class="compass-needle"></span><span class="beacon-marker" id="beacon-marker">◆</span></div><div class="compass-bottom"><span>RIDGE BEACON</span><b id="beacon-distance">— m</b></div></section>
+  <div class="interaction" id="interaction"><span class="keycap">E</span><span id="interaction-text">GATHER</span></div>
+  <div class="crosshair"><i></i><i></i></div>
+  <div class="toast" id="toast"></div>
+  <section class="bottom-left"><span class="coord-icon">⌖</span><span id="coordinates">N 47° 18.4′ &nbsp; W 121° 32.8′</span><span class="separator"></span><span id="biome">TEMPERATE FOREST</span></section>
+  <section class="inventory" id="inventory">
+    <div class="inventory-label">QUICK INVENTORY <span>1 — 5</span></div>
+    <div class="slots">
+      <button class="slot active" data-slot="0"><span class="slot-key">1</span><span class="slot-icon">✦</span><b>HAND</b><small>ready</small></button>
+      <button class="slot" data-slot="1"><span class="slot-key">2</span><span class="slot-icon">◩</span><b>AXE</b><small id="axe-slot-label">empty</small></button>
+      <button class="slot" data-slot="2"><span class="slot-key">3</span><span class="slot-icon">⌁</span><b>SPEAR</b><small id="spear-slot-label">empty</small></button>
+      <button class="slot" data-slot="3"><span class="slot-key">4</span><span class="slot-icon">♨</span><b>FIRE</b><small id="fire-slot-label">empty</small></button>
+      <button class="slot" data-slot="4"><span class="slot-key">5</span><span class="slot-icon">◉</span><b>FLARE</b><small>1 signal</small></button>
+    </div>
+  </section>
+  <section class="resource-strip"><div><span class="resource-glyph wood">▰</span><b id="wood-count">0</b><small>WOOD</small></div><div><span class="resource-glyph stone">◆</span><b id="stone-count">0</b><small>STONE</small></div><div><span class="resource-glyph fiber">❋</span><b id="fiber-count">0</b><small>FIBER</small></div><div><span class="resource-glyph berry">●</span><b id="berry-count">0</b><small>BERRIES</small></div></section>
+  <button class="craft-toggle" id="craft-toggle"><span>⚒</span> CRAFT <kbd>C</kbd></button>
+  <aside class="craft-panel" id="craft-panel"><div class="craft-head"><div><small>FIELD CRAFTING</small><h2>Workbench</h2></div><button id="craft-close">×</button></div><p class="craft-description">Make the tools you'll need to see another sunrise.</p><div class="recipe" data-recipe="axe"><div class="recipe-icon">◩</div><div class="recipe-text"><b>Stone axe</b><small>Efficiency tool · gather wood</small><span class="cost">2 STONE <i>+</i> 1 WOOD</span></div><button class="craft-btn" id="craft-axe">CRAFT</button></div><div class="recipe" data-recipe="spear"><div class="recipe-icon">⌁</div><div class="recipe-text"><b>Wooden spear</b><small>Keep the wild at arm's length</small><span class="cost">2 WOOD <i>+</i> 1 STONE</span></div><button class="craft-btn" id="craft-spear">CRAFT</button></div><div class="recipe" data-recipe="fire"><div class="recipe-icon">♨</div><div class="recipe-text"><b>Campfire kit</b><small>Warmth, light & a safe rest</small><span class="cost">3 WOOD <i>+</i> 2 STONE</span></div><button class="craft-btn" id="craft-fire">CRAFT</button></div><div class="craft-tip"><span>TIP</span> A stone axe harvests more wood. Berries restore nutrition.</div></aside>
+  <div class="danger-banner" id="danger-banner"><span>!</span> WILDLIFE NEARBY <small>STAY ALERT</small></div>
+  <div class="center-notice" id="center-notice"><div class="notice-card"><div class="notice-symbol">✦</div><small>LAST LIGHT</small><h2>Survive the<br><em>Wildlands</em></h2><p>Alone in the northern reach, your only path home is a signal from the ridge. Gather, craft, and make it through the night.</p><div class="notice-instructions"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>E</kbd> GATHER / USE</span></div><button id="begin-btn">ENTER THE WILDLANDS <span>↗</span></button><div class="notice-foot">A SHORT-FORM SURVIVAL EXPEDITION</div></div></div>
+  <div class="pause-screen hidden" id="pause-screen"><div class="pause-box"><small>FIELD PAUSED</small><h2>Take a breath.</h2><p>The wildlands aren't going anywhere.</p><button id="resume-btn">RESUME EXPEDITION</button><button id="restart-btn">START OVER</button></div></div>
+  <div class="end-screen hidden" id="end-screen"><div class="end-box"><small id="end-kicker">EXPEDITION COMPLETE</small><h2 id="end-title">Signal<br><em>received.</em></h2><p id="end-copy">A distant searchlight cuts through the cedar canopy. You made it out.</p><div class="end-stats"><span>TIME IN THE WILD<b id="end-time">00:00</b></span><span>RESOURCES GATHERED<b id="end-gathered">0</b></span></div><button id="again-btn">EXPLORE AGAIN <span>↗</span></button></div></div>
+  <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound">♫ <span>SOUND OFF</span></button>
+  <div class="mobile-controls" id="mobile-controls"><div class="joystick" id="joystick"><div class="joy-knob"></div></div><div class="mobile-actions"><button id="mobile-gather">E</button><button id="mobile-jump">↑</button></div></div>
+</main>
+<script type="module" src="game.js"></script>
+</body>
+</html>
